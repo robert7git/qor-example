@@ -1,6 +1,5 @@
 # Compiled Object files, Static and Dynamic libs (Shared Objects)
 .env
-Dockerfile
 *.sh
 *.o
 *.a
@@ -56,3 +55,5 @@ vendor/*
 *_env
 
 frontend/.next/
+
+.vscode/
