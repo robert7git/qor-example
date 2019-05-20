@@ -6,9 +6,11 @@ import (
 	"os"
 
 	"github.com/jinzhu/gorm"
+
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
-	// _ "github.com/jinzhu/gorm/dialects/sqlite"
+	_ "github.com/jinzhu/gorm/dialects/sqlite"
+
 	"github.com/qor/l10n"
 	"github.com/qor/media"
 	"github.com/qor/publish2"
@@ -39,6 +41,8 @@ func init() {
 		if os.Getenv("DEBUG") != "" {
 			DB.LogMode(true)
 		}
+
+		l10n.Global = "zh-CN"
 
 		l10n.RegisterCallbacks(DB)
 		sorting.RegisterCallbacks(DB)
