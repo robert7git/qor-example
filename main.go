@@ -1,5 +1,7 @@
 package main
 
+import "github.com/qor/qor-example/config/bindatafs"
+
 import (
 	"context"
 	"flag"
@@ -25,7 +27,6 @@ import (
 	"github.com/qor/qor-example/config"
 	"github.com/qor/qor-example/config/application"
 	"github.com/qor/qor-example/config/auth"
-	"github.com/qor/qor-example/config/bindatafs"
 	"github.com/qor/qor-example/config/db"
 	_ "github.com/qor/qor-example/config/db/migrations"
 	"github.com/qor/qor-example/utils/funcmapmaker"
