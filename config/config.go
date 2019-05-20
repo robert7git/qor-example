@@ -14,7 +14,7 @@ import (
 	"github.com/qor/mailer"
 	"github.com/qor/mailer/logger"
 	"github.com/qor/media/oss"
-	"github.com/qor/oss/s3"
+	"github.com/qor/oss/qiniu"
 	"github.com/qor/redirect_back"
 	"github.com/qor/session/manager"
 	"github.com/unrolled/render"
@@ -41,9 +41,18 @@ var Config = struct {
 	S3 struct {
 		AccessKeyID     string `env:"AWS_ACCESS_KEY_ID"`
 		SecretAccessKey string `env:"AWS_SECRET_ACCESS_KEY"`
-		Region          string `env:"AWS_Region"`
-		S3Bucket        string `env:"AWS_Bucket"`
+		Region          string `env:"AWS_REGION"`
+		S3Bucket        string `env:"AWS_BUCKET"`
 	}
+
+	Qiniu struct {
+		AccessID  string `env:"QINIU_ACCESS_ID"`
+		AccessKey string `env:"QINIU_ACCESS_KEY"`
+		Bucket    string `env:"QINIU_BUCKET"`
+		Region    string `env:"QINIU_REGION"`
+		Endpoint  string `env:"QINIU_ENDPOINT"`
+	}
+
 	AmazonPay struct {
 		MerchantID   string `env:"AmazonPayMerchantID"`
 		AccessKey    string `env:"AmazonPayAccessKey"`
@@ -82,14 +91,30 @@ func init() {
 	location.GoogleAPIKey = Config.GoogleAPIKey
 	location.BaiduAPIKey = Config.BaiduAPIKey
 
-	if Config.S3.AccessKeyID != "" {
-		oss.Storage = s3.New(&s3.Config{
-			AccessID:  Config.S3.AccessKeyID,
-			AccessKey: Config.S3.SecretAccessKey,
-			Region:    Config.S3.Region,
-			Bucket:    Config.S3.S3Bucket,
-		})
-	}
+	// if Config.S3.AccessKeyID != "" {
+	// 	oss.Storage = s3.New(&s3.Config{
+	// 		AccessID:  Config.S3.AccessKeyID,
+	// 		AccessKey: Config.S3.SecretAccessKey,
+	// 		Region:    Config.S3.Region,
+	// 		Bucket:    Config.S3.S3Bucket,
+	// 	})
+	// }
+
+	// oss.Storage = qiniu.New(&qiniu.Config{
+	// 	AccessID:  "MkFws9gjO_CScK5pXrahfBEWf9viOD_khTomtL3f",
+	// 	AccessKey: "xVGWVTQTKFAlEEOFj6t4RRasJek5995UPlcMvv3M",
+	// 	Bucket:    "zdtech",
+	// 	Region:    "huadong",
+	// 	Endpoint:  "https://up.qiniup.com",
+	// })
+	oss.Storage = qiniu.New(&qiniu.Config{
+		AccessID:  Config.Qiniu.AccessID,
+		AccessKey: Config.Qiniu.AccessKey,
+		Bucket:    Config.Qiniu.Bucket,
+		Region:    Config.Qiniu.Region,
+		// Endpoint:  Config.Qiniu.Endpoint,
+		Endpoint: "https://up.qiniup.com",
+	})
 
 	AmazonPay = amazonpay.New(&amazonpay.Config{
 		MerchantID: Config.AmazonPay.MerchantID,
