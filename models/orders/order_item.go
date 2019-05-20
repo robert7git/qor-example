@@ -2,8 +2,8 @@ package orders
 
 import (
 	"github.com/jinzhu/gorm"
-	"github.com/qor/qor-example/config/db"
-	"github.com/qor/qor-example/models/products"
+	"github.com/dfang/qor-example/config/db"
+	"github.com/dfang/qor-example/models/products"
 	"github.com/qor/transition"
 )
 

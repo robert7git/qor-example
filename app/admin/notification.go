@@ -8,8 +8,8 @@ import (
 	"github.com/qor/admin"
 	"github.com/qor/notification"
 	"github.com/qor/notification/channels/database"
-	"github.com/qor/qor-example/config/db"
-	"github.com/qor/qor-example/models/orders"
+	"github.com/dfang/qor-example/config/db"
+	"github.com/dfang/qor-example/models/orders"
 )
 
 // SetupNotification add notification

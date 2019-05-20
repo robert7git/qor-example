@@ -72,7 +72,7 @@ var Config = struct {
 }{}
 
 var (
-	Root           = os.Getenv("GOPATH") + "/src/github.com/qor/qor-example"
+	Root           = os.Getenv("GOPATH") + "/src/github.com/dfang/qor-example"
 	Mailer         *mailer.Mailer
 	Render         = render.New()
 	AmazonPay      amazonpay.AmazonPayService

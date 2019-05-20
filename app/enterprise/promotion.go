@@ -8,8 +8,8 @@ import (
 	"enterprise.getqor.com/promotion"
 	"github.com/qor/admin"
 	"github.com/qor/qor"
-	"github.com/qor/qor-example/config/db"
-	"github.com/qor/qor-example/models/products"
+	"github.com/dfang/qor-example/config/db"
+	"github.com/dfang/qor-example/models/products"
 )
 
 // SetupPromotion setup promotion

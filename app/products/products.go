@@ -10,9 +10,9 @@ import (
 	"github.com/qor/media"
 	"github.com/qor/media/media_library"
 	"github.com/qor/qor"
-	"github.com/qor/qor-example/config/application"
-	"github.com/qor/qor-example/models/products"
-	"github.com/qor/qor-example/utils/funcmapmaker"
+	"github.com/dfang/qor-example/config/application"
+	"github.com/dfang/qor-example/models/products"
+	"github.com/dfang/qor-example/utils/funcmapmaker"
 	"github.com/qor/render"
 )
 
@@ -47,19 +47,24 @@ func (app App) ConfigureApplication(application *application.Application) {
 
 // ConfigureAdmin configure admin interface
 func (App) ConfigureAdmin(Admin *admin.Admin) {
-	// Produc Management
-	Admin.AddMenu(&admin.Menu{Name: "Product Management", Priority: 1})
-	color := Admin.AddResource(&products.Color{}, &admin.Config{Menu: []string{"Product Management"}, Priority: -5})
-	Admin.AddResource(&products.Size{}, &admin.Config{Menu: []string{"Product Management"}, Priority: -4})
-	Admin.AddResource(&products.Material{}, &admin.Config{Menu: []string{"Product Management"}, Priority: -4})
+	// I18n := i18n.New(
+	// 	database.New(&db), // load translations from the database
+	// 	yaml.New(filepath.Join(config.Root, "config/locales")), // load translations from the YAML files in directory `config/locales`
+	// )
 
-	category := Admin.AddResource(&products.Category{}, &admin.Config{Menu: []string{"Product Management"}, Priority: -3})
+	// Product Management
+	Admin.AddMenu(&admin.Menu{Name: "Product Management", Priority: 1})
+	color := Admin.AddResource(&products.Color{}, &admin.Config{Menu: []string{"产品管理"}, Priority: -5})
+	Admin.AddResource(&products.Size{}, &admin.Config{Menu: []string{"产品管理"}, Priority: -4})
+	Admin.AddResource(&products.Material{}, &admin.Config{Menu: []string{"产品管理"}, Priority: -4})
+
+	category := Admin.AddResource(&products.Category{}, &admin.Config{Menu: []string{"产品管理"}, Priority: -3})
 	category.Meta(&admin.Meta{Name: "Categories", Type: "select_many"})
 
-	collection := Admin.AddResource(&products.Collection{}, &admin.Config{Menu: []string{"Product Management"}, Priority: -2})
+	collection := Admin.AddResource(&products.Collection{}, &admin.Config{Menu: []string{"产品管理"}, Priority: -2})
 
 	// Add ProductImage as Media Libraray
-	ProductImagesResource := Admin.AddResource(&products.ProductImage{}, &admin.Config{Menu: []string{"Product Management"}, Priority: -1})
+	ProductImagesResource := Admin.AddResource(&products.ProductImage{}, &admin.Config{Menu: []string{"产品管理"}, Priority: -1})
 
 	ProductImagesResource.Filter(&admin.Filter{
 		Name:       "SelectedType",
@@ -78,7 +83,7 @@ func (App) ConfigureAdmin(Admin *admin.Admin) {
 	ProductImagesResource.IndexAttrs("File", "Title")
 
 	// Add Product
-	product := Admin.AddResource(&products.Product{}, &admin.Config{Menu: []string{"Product Management"}})
+	product := Admin.AddResource(&products.Product{}, &admin.Config{Menu: []string{"产品管理"}})
 	product.Meta(&admin.Meta{Name: "Gender", Config: &admin.SelectOneConfig{Collection: Genders, AllowBlank: true}})
 
 	productPropertiesRes := product.Meta(&admin.Meta{Name: "ProductProperties"}).Resource

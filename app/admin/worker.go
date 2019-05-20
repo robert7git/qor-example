@@ -11,9 +11,9 @@ import (
 	"github.com/qor/i18n/exchange_actions"
 	"github.com/qor/media/oss"
 	"github.com/qor/qor"
-	"github.com/qor/qor-example/config/db"
-	"github.com/qor/qor-example/config/i18n"
-	"github.com/qor/qor-example/models/products"
+	"github.com/dfang/qor-example/config/db"
+	"github.com/dfang/qor-example/config/i18n"
+	"github.com/dfang/qor-example/models/products"
 	"github.com/qor/worker"
 )
 

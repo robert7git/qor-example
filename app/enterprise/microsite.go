@@ -9,7 +9,7 @@ import (
 	"github.com/qor/admin"
 	"github.com/qor/l10n"
 	"github.com/qor/publish2"
-	adminapp "github.com/qor/qor-example/app/admin"
+	adminapp "github.com/dfang/qor-example/app/admin"
 	"github.com/qor/roles"
 )
 

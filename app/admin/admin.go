@@ -6,9 +6,9 @@ import (
 	"github.com/qor/help"
 	"github.com/qor/media/asset_manager"
 	"github.com/qor/media/media_library"
-	"github.com/qor/qor-example/config/application"
-	"github.com/qor/qor-example/config/i18n"
-	"github.com/qor/qor-example/models/settings"
+	"github.com/dfang/qor-example/config/application"
+	"github.com/dfang/qor-example/config/i18n"
+	"github.com/dfang/qor-example/models/settings"
 )
 
 // ActionBar admin action bar

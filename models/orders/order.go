@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/jinzhu/gorm"
-	"github.com/qor/qor-example/models/users"
+	"github.com/dfang/qor-example/models/users"
 	"github.com/qor/transition"
 )
 

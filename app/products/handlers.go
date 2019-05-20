@@ -4,8 +4,8 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/qor/qor-example/models/products"
-	"github.com/qor/qor-example/utils"
+	"github.com/dfang/qor-example/models/products"
+	"github.com/dfang/qor-example/utils"
 	"github.com/qor/render"
 )
 
