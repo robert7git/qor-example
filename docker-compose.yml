@@ -1,0 +1,29 @@
+version: '3.1'
+
+services:
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    # environment:
+    #   ADMINER_DB: qor_example
+    #   ADMINER_DRIVER: pgsql
+    #   ADMINER_PASSWORD: adminer
+    #   ADMINER_SERVER: db
+    #   ADMINER_USERNAME: adminer
+    #   ADMINER_AUTOLOGIN: 1
+    #   ADMINER_NAME: This will be in the title!
+
+  db:
+    image: postgres:10.4
+    restart: always
+    environment:
+      # POSTGRES_PASSWORD: example
+      POSTGRES_DB: qor_example
+      POSTGRES_USER: adminer
+      POSTGRES_PASSWORD: adminer
+    ports:
+      - 5432:5432
+
