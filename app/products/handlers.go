@@ -57,9 +57,9 @@ func (ctrl Controller) Show(w http.ResponseWriter, req *http.Request) {
 		http.Redirect(w, req, "/", http.StatusFound)
 	}
 
-	tx.Preload("Product").Preload("Color").Preload("SizeVariations.Size").Where(&products.ColorVariation{ProductID: product.ID, ColorCode: colorCode}).First(&colorVariation)
+	tx.Preload("Product").Preload("Color").Preload("ColorVariations").Preload("SizeVariations.Size").Where(&products.ColorVariation{ProductID: product.ID, ColorCode: colorCode}).First(&colorVariation)
 
-	ctrl.View.Execute("show", map[string]interface{}{"CurrentColorVariation": colorVariation}, req, w)
+	ctrl.View.Execute("show", map[string]interface{}{"CurrentColorVariation": colorVariation, "CurrentProduct": product}, req, w)
 }
 
 // Category category show page
