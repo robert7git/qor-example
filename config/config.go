@@ -15,8 +15,8 @@ import (
 	"github.com/qor/mailer"
 	"github.com/qor/mailer/logger"
 	"github.com/qor/media/oss"
-	// "github.com/qor/oss/s3"
-	"github.com/qor/oss/qiniu"
+	"github.com/qor/oss/s3"
+	// "github.com/qor/oss/qiniu"
 	"github.com/qor/redirect_back"
 	"github.com/qor/session/manager"
 	"github.com/unrolled/render"
@@ -95,42 +95,42 @@ func init() {
 
 	log.Println(Config.S3)
 
-	// if Config.S3.AccessKeyID == "" {
-	// 	log.Println("Please set env QOR_AWS_ACCESS_KEY_ID")
-	// 	os.Exit(1)
-	// }
+	if Config.S3.AccessKeyID == "" {
+		log.Println("Please set env QOR_AWS_ACCESS_KEY_ID")
+		os.Exit(1)
+	}
 
-	// if Config.S3.SecretAccessKey == "" {
-	// 	log.Println("Please set env QOR_AWS_SECRET_ACCESS_KEY")
-	// 	os.Exit(1)
-	// }
+	if Config.S3.SecretAccessKey == "" {
+		log.Println("Please set env QOR_AWS_SECRET_ACCESS_KEY")
+		os.Exit(1)
+	}
 
-	// if Config.S3.Region == "" {
-	// 	log.Println("Please set env QOR_AWS_REGION")
-	// 	os.Exit(1)
-	// }
+	if Config.S3.Region == "" {
+		log.Println("Please set env QOR_AWS_REGION")
+		os.Exit(1)
+	}
 
-	// if Config.S3.S3Bucket == "" {
-	// 	log.Println("Please set env QOR_AWS_BUCKET")
-	// 	os.Exit(1)
-	// }
+	if Config.S3.S3Bucket == "" {
+		log.Println("Please set env QOR_AWS_BUCKET")
+		os.Exit(1)
+	}
 
-	// if Config.S3.AccessKeyID != "" {
-	// 	oss.Storage = s3.New(&s3.Config{
-	// 		AccessID:  Config.S3.AccessKeyID,
-	// 		AccessKey: Config.S3.SecretAccessKey,
-	// 		Region:    Config.S3.Region,
-	// 		Bucket:    Config.S3.S3Bucket,
-	// 	})
-	// }
+	if Config.S3.AccessKeyID != "" {
+		oss.Storage = s3.New(&s3.Config{
+			AccessID:  Config.S3.AccessKeyID,
+			AccessKey: Config.S3.SecretAccessKey,
+			Region:    Config.S3.Region,
+			Bucket:    Config.S3.S3Bucket,
+		})
+	}
 
-	oss.Storage = qiniu.New(&qiniu.Config{
-		AccessID:  Config.Qiniu.AccessID,
-		AccessKey: Config.Qiniu.AccessKey,
-		Bucket:    Config.Qiniu.Bucket,
-		Region:    Config.Qiniu.Region,
-		Endpoint:  Config.Qiniu.Endpoint,
-	})
+	// oss.Storage = qiniu.New(&qiniu.Config{
+	// 	AccessID:  Config.Qiniu.AccessID,
+	// 	AccessKey: Config.Qiniu.AccessKey,
+	// 	Bucket:    Config.Qiniu.Bucket,
+	// 	Region:    Config.Qiniu.Region,
+	// 	Endpoint:  Config.Qiniu.Endpoint,
+	// })
 
 	AmazonPay = amazonpay.New(&amazonpay.Config{
 		MerchantID: Config.AmazonPay.MerchantID,
