@@ -8,29 +8,37 @@ Chat Room: [![Join the chat at https://gitter.im/qor/qor](https://badges.gitter.
 
 ### Go version: 1.8+
 
-```shell
-# Get example app
-$ go get -u github.com/dfang/qor-example
+````shell
+# 1. Run docker-compose to setup database
+$ docker-compose up -d
 
-# Setup database
-$ mysql -uroot -p
-mysql> CREATE DATABASE qor_example;
+# 2. Config database.yml
+> db:
+    adapter: postgres
+    name: qor_example
+    user: adminer
+    password: adminer
+    host: 192.168.66.182
 
-# Run Application
-$ cd $GOPATH/src/github.com/dfang/qor-example
-$ go run main.go
-```
 
-### Generate sample data
+# 3. Config env for qiniu or s3 (config/config.go)
+export QOR_QINIU_ACCESS_ID=<QOR_QINIU_ACCESS_ID>
+export QOR_QINIU_ACCESS_KEY=<QOR_QINIU_ACCESS_KEY>
+export QOR_QINIU_BUCKET=<QOR_QINIU_BUCKET>
+export QOR_QINIU_REGION=<QOR_QINIU_REGION>
+export QOR_QINIU_ENDPOINT=QOR_QINIU_ENDPOINT>
+
+# 3. Seed
 
 ```go
 $ go run config/db/seeds/main.go config/db/seeds/seeds.go
 ```
 
-### Run tests (Pending)
+# 4. Run
 
-```
-$ go test $(go list ./... | grep -v /vendor/ | grep  -v /db/)
+```go
+$ cd $GOPATH/src/github.com/dfang/qor-example
+$ go run main.go
 ```
 
 ## Admin Management Interface
@@ -45,16 +53,18 @@ Online Demo Website: [demo.getqor.com/admin](http://demo.getqor.com/admin)
 
 Online Example APIs:
 
-* Users: [http://demo.getqor.com/api/users.json](http://demo.getqor.com/api/users.json)
-* User 1: [http://demo.getqor.com/api/users/1.json](http://demo.getqor.com/api/users/1.json)
-* User 1's Orders [http://demo.getqor.com/api/users/1/orders.json](http://demo.getqor.com/api/users/1/orders.json)
-* User 1's Order 1 [http://demo.getqor.com/api/users/1/orders/1.json](http://demo.getqor.com/api/users/1/orders/1.json)
-* User 1's Orders 1's Items [http://demo.getqor.com/api/users/1/orders.json](http://demo.getqor.com/api/users/1/orders/1/items.json)
-* Orders: [http://demo.getqor.com/api/orders.json](http://demo.getqor.com/api/orders.json)
-* Products: [http://demo.getqor.com/api/products.json](http://demo.getqor.com/api/products.json)
+- Users: [http://demo.getqor.com/api/users.json](http://demo.getqor.com/api/users.json)
+- User 1: [http://demo.getqor.com/api/users/1.json](http://demo.getqor.com/api/users/1.json)
+- User 1's Orders [http://demo.getqor.com/api/users/1/orders.json](http://demo.getqor.com/api/users/1/orders.json)
+- User 1's Order 1 [http://demo.getqor.com/api/users/1/orders/1.json](http://demo.getqor.com/api/users/1/orders/1.json)
+- User 1's Orders 1's Items [http://demo.getqor.com/api/users/1/orders.json](http://demo.getqor.com/api/users/1/orders/1/items.json)
+- Orders: [http://demo.getqor.com/api/orders.json](http://demo.getqor.com/api/orders.json)
+- Products: [http://demo.getqor.com/api/products.json](http://demo.getqor.com/api/products.json)
 
 ## License
 
 Released under the MIT License.
 
 [@QORSDK](https://twitter.com/qorsdk)
+```
+````
