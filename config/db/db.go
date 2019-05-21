@@ -11,10 +11,10 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 
+	"github.com/dfang/qor-example/config"
 	"github.com/qor/l10n"
 	"github.com/qor/media"
 	"github.com/qor/publish2"
-	"github.com/dfang/qor-example/config"
 	"github.com/qor/sorting"
 	"github.com/qor/validations"
 )
@@ -42,7 +42,7 @@ func init() {
 			DB.LogMode(true)
 		}
 
-		l10n.Global = "zh-CN"
+		// l10n.Global = "zh-CN"
 
 		l10n.RegisterCallbacks(DB)
 		sorting.RegisterCallbacks(DB)

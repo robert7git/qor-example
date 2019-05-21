@@ -3,17 +3,13 @@ package auth
 import (
 	"time"
 
-	"github.com/qor/auth"
-	"github.com/qor/auth/authority"
-	"github.com/qor/auth/providers/facebook"
-	"github.com/qor/auth/providers/github"
-	"github.com/qor/auth/providers/google"
-	"github.com/qor/auth/providers/twitter"
-	"github.com/qor/auth_themes/clean"
 	"github.com/dfang/qor-example/config"
 	"github.com/dfang/qor-example/config/bindatafs"
 	"github.com/dfang/qor-example/config/db"
 	"github.com/dfang/qor-example/models/users"
+	"github.com/qor/auth"
+	"github.com/qor/auth/authority"
+	"github.com/qor/auth_themes/clean"
 	"github.com/qor/render"
 )
 
@@ -34,10 +30,10 @@ var (
 )
 
 func init() {
-	Auth.RegisterProvider(github.New(&config.Config.Github))
-	Auth.RegisterProvider(google.New(&config.Config.Google))
-	Auth.RegisterProvider(facebook.New(&config.Config.Facebook))
-	Auth.RegisterProvider(twitter.New(&config.Config.Twitter))
+	// Auth.RegisterProvider(github.New(&config.Config.Github))
+	// Auth.RegisterProvider(google.New(&config.Config.Google))
+	// Auth.RegisterProvider(facebook.New(&config.Config.Facebook))
+	// Auth.RegisterProvider(twitter.New(&config.Config.Twitter))
 
 	Authority.Register("logged_in_half_hour", authority.Rule{TimeoutSinceLastLogin: time.Minute * 30})
 }

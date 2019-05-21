@@ -1,6 +1,7 @@
 package config
 
 import (
+	"log"
 	"os"
 
 	"github.com/jinzhu/configor"
@@ -14,6 +15,7 @@ import (
 	"github.com/qor/mailer"
 	"github.com/qor/mailer/logger"
 	"github.com/qor/media/oss"
+	// "github.com/qor/oss/s3"
 	"github.com/qor/oss/qiniu"
 	"github.com/qor/redirect_back"
 	"github.com/qor/session/manager"
@@ -39,18 +41,18 @@ var Config = struct {
 		Password string `env:"DBPassword"`
 	}
 	S3 struct {
-		AccessKeyID     string `env:"AWS_ACCESS_KEY_ID"`
-		SecretAccessKey string `env:"AWS_SECRET_ACCESS_KEY"`
-		Region          string `env:"AWS_REGION"`
-		S3Bucket        string `env:"AWS_BUCKET"`
+		AccessKeyID     string `env:"QOR_AWS_ACCESS_KEY_ID"`
+		SecretAccessKey string `env:"QOR_AWS_SECRET_ACCESS_KEY"`
+		Region          string `env:"QOR_AWS_REGION"`
+		S3Bucket        string `env:"QOR_AWS_BUCKET"`
 	}
 
 	Qiniu struct {
-		AccessID  string `env:"QINIU_ACCESS_ID"`
-		AccessKey string `env:"QINIU_ACCESS_KEY"`
-		Bucket    string `env:"QINIU_BUCKET"`
-		Region    string `env:"QINIU_REGION"`
-		Endpoint  string `env:"QINIU_ENDPOINT"`
+		AccessID  string `env:"QOR_QINIU_ACCESS_ID"`
+		AccessKey string `env:"QOR_QINIU_ACCESS_KEY"`
+		Bucket    string `env:"QOR_QINIU_BUCKET"`
+		Region    string `env:"QOR_QINIU_REGION"`
+		Endpoint  string `env:"QOR_QINIU_ENDPOINT"`
 	}
 
 	AmazonPay struct {
@@ -91,6 +93,28 @@ func init() {
 	location.GoogleAPIKey = Config.GoogleAPIKey
 	location.BaiduAPIKey = Config.BaiduAPIKey
 
+	log.Println(Config.S3)
+
+	// if Config.S3.AccessKeyID == "" {
+	// 	log.Println("Please set env QOR_AWS_ACCESS_KEY_ID")
+	// 	os.Exit(1)
+	// }
+
+	// if Config.S3.SecretAccessKey == "" {
+	// 	log.Println("Please set env QOR_AWS_SECRET_ACCESS_KEY")
+	// 	os.Exit(1)
+	// }
+
+	// if Config.S3.Region == "" {
+	// 	log.Println("Please set env QOR_AWS_REGION")
+	// 	os.Exit(1)
+	// }
+
+	// if Config.S3.S3Bucket == "" {
+	// 	log.Println("Please set env QOR_AWS_BUCKET")
+	// 	os.Exit(1)
+	// }
+
 	// if Config.S3.AccessKeyID != "" {
 	// 	oss.Storage = s3.New(&s3.Config{
 	// 		AccessID:  Config.S3.AccessKeyID,
@@ -100,20 +124,12 @@ func init() {
 	// 	})
 	// }
 
-	// oss.Storage = qiniu.New(&qiniu.Config{
-	// 	AccessID:  "MkFws9gjO_CScK5pXrahfBEWf9viOD_khTomtL3f",
-	// 	AccessKey: "xVGWVTQTKFAlEEOFj6t4RRasJek5995UPlcMvv3M",
-	// 	Bucket:    "zdtech",
-	// 	Region:    "huadong",
-	// 	Endpoint:  "https://up.qiniup.com",
-	// })
 	oss.Storage = qiniu.New(&qiniu.Config{
 		AccessID:  Config.Qiniu.AccessID,
 		AccessKey: Config.Qiniu.AccessKey,
 		Bucket:    Config.Qiniu.Bucket,
 		Region:    Config.Qiniu.Region,
-		// Endpoint:  Config.Qiniu.Endpoint,
-		Endpoint: "https://up.qiniup.com",
+		Endpoint:  Config.Qiniu.Endpoint,
 	})
 
 	AmazonPay = amazonpay.New(&amazonpay.Config{

@@ -10,11 +10,6 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/go-chi/chi"
-	"github.com/go-chi/chi/middleware"
-	"github.com/qor/admin"
-	"github.com/qor/publish2"
-	"github.com/qor/qor"
 	"github.com/dfang/qor-example/app/account"
 	adminapp "github.com/dfang/qor-example/app/admin"
 	"github.com/dfang/qor-example/app/api"
@@ -30,6 +25,11 @@ import (
 	"github.com/dfang/qor-example/config/db"
 	_ "github.com/dfang/qor-example/config/db/migrations"
 	"github.com/dfang/qor-example/utils/funcmapmaker"
+	"github.com/go-chi/chi"
+	"github.com/go-chi/chi/middleware"
+	"github.com/qor/admin"
+	"github.com/qor/publish2"
+	"github.com/qor/qor"
 	"github.com/qor/qor/utils"
 )
 
