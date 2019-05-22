@@ -16,7 +16,7 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o /go/bin/qor-example
 
 # -----------------------------------------------------------------------------
 # step 2: exec
-FROM scratch
+FROM phusion/baseimage:0.11
 
 COPY --from=build-step /go/bin/qor-example /go/bin/qor-example
 COPY app .
