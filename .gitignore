@@ -34,8 +34,8 @@ config/admin/bindatafs/templates_bindatafs.go
 
 .editorconfig
 deploy.sh
-db/seeds/enterprise
-db/seeds/main
+config/db/seeds/enterprise
+config/db/seeds/main
 harp.json
 .harp
 tmp/*

@@ -13,15 +13,20 @@ RUN go mod download
 COPY . .
 
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o /go/bin/qor-example
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o /go/bin/seeds config/db/seeds/main.go config/db/seeds/seeds.go
 
 # -----------------------------------------------------------------------------
 # step 2: exec
-FROM phusion/baseimage:0.11
+# FROM phusion/baseimage:0.11
+FROM golang:1.12.5
 
-COPY --from=build-step /go/bin/qor-example /go/bin/qor-example
-COPY app .
-COPY public .
-COPY config .
+RUN mkdir /go-app
+WORKDIR /go-app
+COPY --from=build-step /go/bin/qor-example /go-app/qor-example
+COPY --from=build-step /go/bin/seeds /go-app/seeds
+COPY app ./app
+COPY public ./public
+COPY config ./config
 
-CMD ["/go/bin/qor-example"]
+CMD ["/go-app/qor-example"]
 
