@@ -30,9 +30,9 @@ services:
       - 5432:5432
 
   qor:
-    # image: dfang/qor-example:latest
-    build:
-      context: .
+    image: dfang/qor-example:latest
+    # build:
+    #   context: .
     # command: [ "cat", "config/database.yml" ]
     # command: [ "go", "run", "config/db/seeds/main.go", "config/db/seeds/seeds.go" ]
     restart: always

@@ -1,6 +1,9 @@
 data/
 config/db/seeds/enterprise
 config/db/seeds/main
+config/database.yml
+config/application.yml
+config/smtp.yml
 docker-compose.yml
 qor-example
 .env
