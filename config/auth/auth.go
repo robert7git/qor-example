@@ -7,9 +7,9 @@ import (
 	"github.com/dfang/qor-example/config/bindatafs"
 	"github.com/dfang/qor-example/config/db"
 	"github.com/dfang/qor-example/models/users"
-	"github.com/qor/auth"
-	"github.com/qor/auth/authority"
-	"github.com/qor/auth_themes/clean"
+	"github.com/dfang/auth"
+	"github.com/dfang/auth/authority"
+	"github.com/dfang/auth_themes/clean"
 	"github.com/qor/render"
 )
 

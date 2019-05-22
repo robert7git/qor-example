@@ -2,7 +2,7 @@ package migrations
 
 import (
 	"github.com/qor/activity"
-	"github.com/qor/auth/auth_identity"
+	"github.com/dfang/auth/auth_identity"
 	"github.com/qor/banner_editor"
 	"github.com/qor/help"
 	"github.com/qor/media/asset_manager"
