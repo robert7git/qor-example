@@ -12,7 +12,7 @@ COPY go.sum .
 RUN go mod download
 COPY . .
 
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o /go/bin/qor-example
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -tags 'bindatafs' -o /go/bin/qor-example
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o /go/bin/seeds config/db/seeds/main.go config/db/seeds/seeds.go
 
 # -----------------------------------------------------------------------------
@@ -24,9 +24,9 @@ RUN mkdir /go-app
 WORKDIR /go-app
 COPY --from=build-step /go/bin/qor-example /go-app/qor-example
 COPY --from=build-step /go/bin/seeds /go-app/seeds
-COPY app ./app
-COPY public ./public
-COPY config ./config
+# COPY app ./app
+# COPY public ./public
+# COPY config ./config
 
-CMD ["/go-app/qor-example"]
+CMD ["./qor-example"]
 
