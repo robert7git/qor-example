@@ -1,0 +1,10 @@
+data/
+config/db/seeds/enterprise
+config/db/seeds/main
+docker-compose.yml
+qor-example
+.env
+*.sh
+main
+.vscode
+.idea

@@ -57,3 +57,4 @@ vendor/*
 frontend/.next/
 
 .vscode/
+data/

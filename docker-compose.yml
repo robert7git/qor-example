@@ -24,6 +24,24 @@ services:
       POSTGRES_DB: qor_example
       POSTGRES_USER: adminer
       POSTGRES_PASSWORD: adminer
+    volumes:
+      - ./data:/var/lib/postgresql/data/
     ports:
       - 5432:5432
 
+  qor:
+    # image: dfang/qor-example:latest
+    build:
+      context: .
+    # command: [ "cat", "config/database.yml" ]
+    # command: [ "go", "run", "config/db/seeds/main.go", "config/db/seeds/seeds.go" ]
+    restart: always
+    environment:
+      QOR_AWS_ACCESS_KEY_ID: AKIAI3Z7SFTABSJQSLDQ
+      QOR_AWS_SECRET_ACCESS_KEY: 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
+      QOR_AWS_BUCKET: qor-1234
+      QOR_AWS_REGION: ap-northeast-1
+    volumes:
+      - ./config/database.yml:/go-app/config/database.yml
+    ports:
+      - 7000:7000
