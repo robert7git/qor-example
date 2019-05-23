@@ -33,18 +33,17 @@ services:
     image: dfang/qor-example:latest
     # build:
     #   context: .
-    # command: ["ls", "/go-app/config/locales"]
-    # command: ["./qor-example"]
-    # command: ["/go-app/seeds"]
-    # command: ["/go-app/qor-example"]
-    # command: [ "cat", "/go-app/config/database.yml" ]
+    command: ["./qor-example"]
+    # command: ["./seeds"]
     # command: [ "go", "run", "config/db/seeds/main.go", "config/db/seeds/seeds.go" ]
     restart: always
-    environment:
-      QOR_AWS_ACCESS_KEY_ID: AKIAI3Z7SFTABSJQSLDQ
-      QOR_AWS_SECRET_ACCESS_KEY: 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
-      QOR_AWS_BUCKET: qor-1234
-      QOR_AWS_REGION: ap-northeast-1
+    # environment:
+    #   QOR_AWS_ACCESS_KEY_ID: AKIAI3Z7SFTABSJQSLDQ
+    #   QOR_AWS_SECRET_ACCESS_KEY: secret
+    #   QOR_AWS_BUCKET: qor-1234
+    #   QOR_AWS_REGION: ap-northeast-1
+    env_file:
+      - .env
     volumes:
       - ./config/database.yml:/go-app/config/database.yml
     ports:

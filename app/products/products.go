@@ -47,10 +47,6 @@ func (app App) ConfigureApplication(application *application.Application) {
 
 // ConfigureAdmin configure admin interface
 func (App) ConfigureAdmin(Admin *admin.Admin) {
-	// I18n := i18n.New(
-	// 	database.New(&db), // load translations from the database
-	// 	yaml.New(filepath.Join(config.Root, "config/locales")), // load translations from the YAML files in directory `config/locales`
-	// )
 
 	// Product Management
 	Admin.AddMenu(&admin.Menu{Name: "Product Management", Priority: 1})

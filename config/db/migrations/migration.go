@@ -1,11 +1,7 @@
 package migrations
 
 import (
-	"github.com/qor/activity"
 	"github.com/dfang/auth/auth_identity"
-	"github.com/qor/banner_editor"
-	"github.com/qor/help"
-	"github.com/qor/media/asset_manager"
 	"github.com/dfang/qor-example/app/admin"
 	"github.com/dfang/qor-example/config/db"
 	"github.com/dfang/qor-example/models/blogs"
@@ -15,6 +11,11 @@ import (
 	"github.com/dfang/qor-example/models/settings"
 	"github.com/dfang/qor-example/models/stores"
 	"github.com/dfang/qor-example/models/users"
+	"github.com/qor/activity"
+	"github.com/qor/banner_editor"
+	"github.com/qor/help"
+	i18n_database "github.com/qor/i18n/backends/database"
+	"github.com/qor/media/asset_manager"
 	"github.com/qor/transition"
 )
 
@@ -49,6 +50,8 @@ func init() {
 	AutoMigrate(&auth_identity.AuthIdentity{})
 
 	AutoMigrate(&banner_editor.QorBannerEditorSetting{})
+
+	AutoMigrate(&i18n_database.Translation{})
 }
 
 // AutoMigrate run auto migration
