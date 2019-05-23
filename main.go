@@ -23,7 +23,10 @@ import (
 	"github.com/dfang/qor-example/config/application"
 	"github.com/dfang/qor-example/config/auth"
 	"github.com/dfang/qor-example/config/db"
-	_ "github.com/dfang/qor-example/config/db/migrations"
+  
+  // https://github.com/qor/qor-example/issues/129
+  // _ "github.com/dfang/qor-example/config/db/migrations"
+
 	"github.com/dfang/qor-example/utils/funcmapmaker"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"

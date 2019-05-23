@@ -93,7 +93,7 @@ func init() {
 	location.GoogleAPIKey = Config.GoogleAPIKey
 	location.BaiduAPIKey = Config.BaiduAPIKey
 
-	log.Println(Config.S3)
+	// log.Println(Config.S3)
 
 	if Config.S3.AccessKeyID == "" {
 		log.Println("Please set env QOR_AWS_ACCESS_KEY_ID")

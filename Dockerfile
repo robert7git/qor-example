@@ -1,8 +1,7 @@
 # step 1: build
-FROM golang:1.12.5-alpine3.9 as build-step
-
-# for go mod download
-RUN apk add --update --no-cache build-base ca-certificates git
+FROM golang:1.12.5 as build-step
+# FROM golang:1.12.5-alpine3.9 as build-step
+# RUN apk add --update --no-cache build-base ca-certificates git
 
 RUN mkdir /go-app
 WORKDIR /go-app
@@ -24,9 +23,9 @@ RUN mkdir /go-app
 WORKDIR /go-app
 COPY --from=build-step /go/bin/qor-example /go-app/qor-example
 COPY --from=build-step /go/bin/seeds /go-app/seeds
-# COPY app ./app
-# COPY public ./public
-# COPY config ./config
+COPY app ./app
+COPY public ./public
+COPY config ./config
 
-CMD ["./qor-example"]
+CMD ["/go-app/qor-example"]
 

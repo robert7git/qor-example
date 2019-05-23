@@ -1,5 +1,7 @@
 package bindatafs
 
+import "github.com/jteeuwen/go-bindata"
+
 import (
 	"crypto/md5"
 	"fmt"
@@ -11,7 +13,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/jteeuwen/go-bindata"
 	"github.com/qor/assetfs"
 )
 
@@ -22,9 +23,9 @@ type AssetFSInterface interface {
 
 var AssetFS AssetFSInterface = &bindataFS{AssetFileSystem: &assetfs.AssetFileSystem{}, Path: "config/bindatafs"}
 
-func init() {
-	assetfs.SetAssetFS(AssetFS)
-}
+// func init() {
+// 	assetfs.SetAssetFS(AssetFS)
+// }
 
 type viewPath struct {
 	Dir        string

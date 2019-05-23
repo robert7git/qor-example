@@ -17,6 +17,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/dfang/auth/auth_identity"
+	"github.com/dfang/auth/providers/password"
 	"github.com/dfang/qor-example/app/admin"
 	"github.com/dfang/qor-example/config/auth"
 	"github.com/dfang/qor-example/config/db"
@@ -30,8 +32,6 @@ import (
 	"github.com/dfang/qor-example/models/users"
 	"github.com/jinzhu/now"
 	qoradmin "github.com/qor/admin"
-	"github.com/dfang/auth/auth_identity"
-	"github.com/dfang/auth/providers/password"
 	"github.com/qor/banner_editor"
 	"github.com/qor/help"
 	i18n_database "github.com/qor/i18n/backends/database"
@@ -84,6 +84,7 @@ var (
 
 func main() {
 	Notification.RegisterChannel(database.New(&database.Config{}))
+	fmt.Println("Truncate tables .....")
 	TruncateTables(Tables...)
 	createRecords()
 }

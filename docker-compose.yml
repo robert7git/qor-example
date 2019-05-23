@@ -33,7 +33,11 @@ services:
     image: dfang/qor-example:latest
     # build:
     #   context: .
-    # command: [ "cat", "config/database.yml" ]
+    # command: ["ls", "/go-app/config/locales"]
+    # command: ["./qor-example"]
+    # command: ["/go-app/seeds"]
+    # command: ["/go-app/qor-example"]
+    # command: [ "cat", "/go-app/config/database.yml" ]
     # command: [ "go", "run", "config/db/seeds/main.go", "config/db/seeds/seeds.go" ]
     restart: always
     environment:

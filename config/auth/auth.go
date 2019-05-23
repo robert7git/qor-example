@@ -1,10 +1,11 @@
 package auth
 
+import "github.com/dfang/qor-example/config/bindatafs"
+
 import (
 	"time"
 
 	"github.com/dfang/qor-example/config"
-	"github.com/dfang/qor-example/config/bindatafs"
 	"github.com/dfang/qor-example/config/db"
 	"github.com/dfang/qor-example/models/users"
 	"github.com/dfang/auth"
